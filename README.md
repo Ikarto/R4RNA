@@ -5,7 +5,7 @@ Interactions between biological entities are key to understanding their potentia
 DOI: https://doi.org/10.1093/nar/gkaa708
 
 
-#########################################################################################
+########################################################################################
 
 To install from source you can download "R4RNA_2.0.8.tar.gz"
 
@@ -13,6 +13,6 @@ And after execute this command at your R shell:
 
 "install.packages("PATH/TO/R4RNA_2.0.8.tar.gz", repos = NULL, type="source")"
 
-#########################################################################################
+########################################################################################
 
 For web-server use: https://e-rna.org/r-chie/
