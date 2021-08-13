@@ -1,0 +1,18 @@
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+Package: R4RNA
+Type: Package
+Title: An R package for RNA visualization and analysis
+Version: 2.0.8
+Date: 2020-11-02
+Author: Daniel Lai, Irmtraud Meyer <irmtraud.meyer@cantab.net>, Volodymyr Tsybulskyi
+Maintainer: Volodymyr Tsybulskyi <irmtraud.meyer@cantab.net>
+Depends: R (>= 3.5.0), Biostrings (>= 2.38.0), data.table (>= 1.12.2)
+Description: A package for RNA basepair analysis, including the visualization of basepairs as arc diagrams for easy comparison and annotation of sequence
+                 and structure.  Arc diagrams can additionally be projected onto multiple sequence alignments to assess basepair conservation and
+                 covariation, with numerical methods for computing statistics for each.
+License: GPL-3
+URL: http://www.e-rna.org/r-chie/
+RoxygenNote: 7.1.1
+NeedsCompilation: no
+Packaged: 2021-08-13 13:34:45 UTC; DNA
