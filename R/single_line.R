@@ -1,4 +1,4 @@
-## Copyright (C) 2020-2021 Volodymyr Tsybulskyi and Irmtraud M. Meyer (www.e-rna.org)
+## Copyright (C) 2019 Irmtraud M. Meyer,Volodymyr Tsybuslkyi, Daniel Lai, (www.e-rna.org)
 ## Contact information: irmtraud.meyer@cantab.net
 
 ## This program is free software: you can redistribute it and/or modify
@@ -798,67 +798,86 @@ plotComparisonHelixMltpSingleLine <- function(helix1,helix2,top.name = "FALSE",s
   dfFP <- helix2[!dfTP, on= c("i","j","length","ent.i","ent.j" )]
 
   if(nrow(dfTP) == 0){
-    stop("No True Positives")
+    warning("No True Positives")
+  }else{
+    attr(dfTP, "length") <- attr(helix1,"length")
+
+    if(length(unique(dfTP$value)) == 1){
+      warning("True Positives have same value\n Colour to Blue")
+      dfTP[,col := "#4169E1"]
+    }else{
+      if(is.na(breaks)){
+        if(is.na(cols)){
+          dfTP <- colourByValueMltp(dfTP,get = TRUE, log = log, include.lowest = include.lowest)
+        }else{
+          dfTP <- colourByValueMltp(dfTP,get = TRUE, cols = cols, log = log, include.lowest = include.lowest)
+        }
+      }else{
+        if(is.na(cols)){
+          dfTP <- colourByValueMltp(dfTP,get = TRUE,breaks = breaks, log = log, include.lowest = include.lowest)
+        }else{
+          dfTP <- colourByValueMltp(dfTP,get = TRUE,breaks = breaks, cols = cols, log = log, include.lowest = include.lowest)
+        }
+      }
+
+    }
   }
   if(nrow(dfFN) == 0){
-    stop("No False Negatives")
+    warning("No False Negatives")
+  }else{
+    attr(dfFN, "length") <- attr(helix1,"length")
+
+    if(length(unique(dfFP$value)) ==1 ){
+      warning("False Positives have same value\n Colour to Blue")
+      dfFP[,col := "#4169E1"]
+    }else{
+      if(is.na(breaks)){
+        if(is.na(cols)){
+          dfFP <- colourByValueMltp(dfFP,get = TRUE, log = log, include.lowest = include.lowest)
+        }else{
+          dfFP <- colourByValueMltp(dfFP,get = TRUE, cols = cols, log = log, include.lowest = include.lowest)
+        }
+      }else{
+        if(is.na(cols)){
+          dfFP <- colourByValueMltp(dfFP,get = TRUE,breaks = breaks, log = log, include.lowest = include.lowest)
+        }else{
+          dfFP <- colourByValueMltp(dfFP,get = TRUE,breaks = breaks, cols = cols, log = log, include.lowest = include.lowest)
+        }
+      }
+    }
   }
+
   if(nrow(dfFP) == 0){
-    stop("No False Positives")
-  }
-
-  attr(dfTP, "length") <- attr(helix1,"length")
-  attr(dfFN, "length") <- attr(helix1,"length")
-  attr(dfFN, "length") <- attr(helix1,"length")
-
-  if(unique(dfTP$value) ==1 ){
-    warning("True Positives have same value\n Colour to Blue")
-    dfTP[,col := "#4169E1"]
+    warning("No False Positives")
   }else{
-    if(is.na(breaks)){
-      if(is.na(cols)){
-        dfTP <- colourByValueMltp(dfTP,get = TRUE, log = log, include.lowest = include.lowest)
-      }else{
-        dfTP <- colourByValueMltp(dfTP,get = TRUE, cols = cols, log = log, include.lowest = include.lowest)
-      }
-    }else{
-      if(is.na(cols)){
-        dfTP <- colourByValueMltp(dfTP,get = TRUE,breaks = breaks, log = log, include.lowest = include.lowest)
-      }else{
-        dfTP <- colourByValueMltp(dfTP,get = TRUE,breaks = breaks, cols = cols, log = log, include.lowest = include.lowest)
-      }
-    }
-
-  }
-  if(unique(dfFP$value) ==1 ){
-    warning("False Positives have same value\n Colour to Blue")
-    dfFP[,col := "#4169E1"]
-  }else{
-    if(is.na(breaks)){
-      if(is.na(cols)){
-        dfFP <- colourByValueMltp(dfFP,get = TRUE, log = log, include.lowest = include.lowest)
-      }else{
-        dfFP <- colourByValueMltp(dfFP,get = TRUE, cols = cols, log = log, include.lowest = include.lowest)
-      }
-    }else{
-      if(is.na(cols)){
-        dfFP <- colourByValueMltp(dfFP,get = TRUE,breaks = breaks, log = log, include.lowest = include.lowest)
-      }else{
-        dfFP <- colourByValueMltp(dfFP,get = TRUE,breaks = breaks, cols = cols, log = log, include.lowest = include.lowest)
-      }
-    }
+    attr(dfFP, "length") <- attr(helix1,"length")
   }
 
+  if(nrow(dfTP) != 0){
+    dfBP <- rbind(dfTP[,1:6])
+    attr(dfBP, "length") <- attr(helix1,"length")
+  }
 
-  dfBP <- rbind(dfFN[,1:6],dfTP[,1:6])
-  attr(dfBP, "length") <- attr(helix1,"length")
+  if(nrow(dfFN) != 0){
+    dfBP <- rbind(dfFN[,1:6])
+    attr(dfBP, "length") <- attr(helix1,"length")
+  }
+
+  if(nrow(dfFN) != 0 & nrow(dfTP) != 0){
+    dfBP <- rbind(dfFN[,1:6],dfTP[,1:6])
+    attr(dfBP, "length") <- attr(helix1,"length")
+  }
 
   max.height.pos <- def.max.height.helix(dfBP,top.name = top.name,
                                          sort = sort,dist.part = dist.part,
                                          stable = stable)
-  max.height.neg <- -def.max.height.helix(dfFP,top.name = top.name,
-                                          sort = sort,dist.part = dist.part,
-                                          stable = stable)
+  if(nrow(dfFP)==0){
+    max.height.neg <- -max.height.pos
+  }else{
+    max.height.neg <- -def.max.height.helix(dfFP,top.name = top.name,
+                                            sort = sort,dist.part = dist.part,
+                                            stable = stable)
+  }
 
   dist.between <- attr(max.height.pos,"dist.between")
   uniq <- attr(max.height.pos,"uniq")
@@ -869,18 +888,24 @@ plotComparisonHelixMltpSingleLine <- function(helix1,helix2,top.name = "FALSE",s
                  scale = scale,debug = debug,...)
   }
 
-  plotHelixMltpSingleLine(dfFN,col = col,flip = FALSE,line = FALSE,arrow = FALSE,add = TRUE,
-                          scale = scale,dist.part = dist.part,stable = stable,
-                          shape = shape,debug = debug,top.name = top.name,
-                          sort = sort)
-  plotHelixMltpSingleLine(dfTP[order(value)],col = col,flip = FALSE,line = FALSE,arrow = FALSE,add = TRUE,
-                          scale = scale,dist.part = dist.part,stable = stable,
-                          shape = shape,debug = debug,top.name = top.name,
-                          sort = sort)
-  plotHelixMltpSingleLine(dfFP[order(value)],col = col,flip = TRUE,line = FALSE,arrow = FALSE,add = TRUE,
-                          scale = scale,dist.part = dist.part,stable = stable,
-                          shape = shape,debug = debug,top.name = top.name,
-                          sort = sort)
+  if(nrow(dfFN)!=0){
+    plotHelixMltpSingleLine(dfFN,col = col,flip = FALSE,line = FALSE,arrow = FALSE,add = TRUE,
+                            scale = scale,dist.part = dist.part,stable = stable,
+                            shape = shape,debug = debug,top.name = top.name,
+                            sort = sort,...)
+  }
+  if(nrow(dfTP)!=0){
+    plotHelixMltpSingleLine(dfTP[order(value)],col = col,flip = FALSE,line = FALSE,arrow = FALSE,add = TRUE,
+                            scale = scale,dist.part = dist.part,stable = stable,
+                            shape = shape,debug = debug,top.name = top.name,
+                            sort = sort,...)
+  }
+  if(nrow(dfFP)!=0){
+    plotHelixMltpSingleLine(dfFP[order(value)],col = col,flip = TRUE,line = FALSE,arrow = FALSE,add = TRUE,
+                            scale = scale,dist.part = dist.part,stable = stable,
+                            shape = shape,debug = debug,top.name = top.name,
+                            sort = sort,...)
+  }
 
   uniq$y <- 0
 
@@ -890,8 +915,6 @@ plotComparisonHelixMltpSingleLine <- function(helix1,helix2,top.name = "FALSE",s
   if(arrow){
     plot.arrows.single(uniq,dist.between,col.arrow)
   }
-
-
 
   #restore warnings
   options(warn = 1)

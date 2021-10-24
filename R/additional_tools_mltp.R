@@ -1,4 +1,4 @@
-## Copyright (C) 2020-2021 Volodymyr Tsybulskyi and Irmtraud M. Meyer (www.e-rna.org)
+## Copyright (C) 2019 Irmtraud M. Meyer,Volodymyr Tsybuslkyi, Daniel Lai, (www.e-rna.org)
 ## Contact information: irmtraud.meyer@cantab.net
 
 ## This program is free software: you can redistribute it and/or modify

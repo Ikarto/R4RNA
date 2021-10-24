@@ -13,14 +13,14 @@
 		Package: \tab R4RNA\cr
 		Type: \tab Package\cr
 		Version: \tab 0.1.3\cr
-		Date: \tab 2020-02-11\cr
+		Date: \tab 2012-02-16\cr
 		License: \tab GPL-3\cr
 	}
 }
 \author{
-	Maintainer: Volodymyr Tsybulskyi <irmtraud.meyer@cantab.net>
-
-	Irmtraud Meyer
+	Maintainer: Daniel Lai  <jujubix@cs.ubc.ca>
+	
+	Jeff Proctor
 }
 \keyword{package}
 \examples{
@@ -36,7 +36,7 @@
 
 	cov.coloured <- colourByCovariation(known, sequence, get = TRUE)
 	plotCovariance(sequence, cov.coloured)
-
+	
 	plotDoubleCovariance(cov.coloured, pval.coloured, sequence,
 		conflict.filter = "grey")
 	plotOverlapCovariance(pval.coloured, known, sequence, grid = TRUE,
