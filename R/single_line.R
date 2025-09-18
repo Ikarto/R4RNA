@@ -144,7 +144,7 @@ plotHelixMltpSingleLine <- function(helix,top.name = "FALSE",sort = TRUE,
     plot.arrows.single(uniq,dist.between,col.arrow,y=y)
   }
   #plot interactions arcs
-  plot.arcs.single(helix,col = col,flip = flip,y=y,lty=arc.lty,shape=shape,...)
+  plot.arcs.single(helix,col = col,flip = flip,y=y,lty=arc.lty,shape=shape)
   #restore warnings
   options(warn = 1)
 }
@@ -293,6 +293,7 @@ plotDoubleHelixMltpSingleLine <- function(top,bottom,top.name = "FALSE",sort = T
 #'(i.e. mutation into another valid basepair), cyan is one-sided mutation that
 #'retains the basepair, and red is a mutation where the basepair has been lost.
 #'
+#' @name plotCovarianceMltpSingleLine
 #'
 #'
 #' @param msa,msa1,msa2,msa.left,msa.right Multiple sequence alignment as an array of named characters,
@@ -343,7 +344,7 @@ plotDoubleHelixMltpSingleLine <- function(top,bottom,top.name = "FALSE",sort = T
 #' covarying basepairs, one-sided conserved basepairs, invalid basepairs,
 #' unpaired bases, gaps, and bases/pairs with ambiguous bases, resepctively.
 #' If the palette is shorter than the expected length, the palette will
-#' simply cycle. “NA” is a valid colour, that will effectively plot nothing.
+#' simply cycle. "NA" is a valid colour, that will effectively plot nothing.
 #' @param text Only applicable when grid is TRUE.
 #' TRUE if the grid is to be filled with nucleotide character.
 #' @param grid.col,grid.lwd The colour and line width of the borders
@@ -749,6 +750,7 @@ plotCovarianceMltpSingleLine <- function(msa,helix,comp.seq = FALSE,top.name = "
 
 
 #' @rdname plotHelixMltpSingleLine
+#' @name plotComparisonHelixMltpSingleLine
 #' @export
 #'
 ###############################################################################
@@ -807,13 +809,15 @@ plotComparisonHelixMltpSingleLine <- function(helix1,helix2,top.name = "FALSE",s
       dfTP[,col := "#4169E1"]
     }else{
       if(is.na(breaks)){
-        if(is.na(cols)){
+        # if(is.na(cols)){
+        if (missing(cols) || (length(cols) == 1 && is.na(cols))) {
           dfTP <- colourByValueMltp(dfTP,get = TRUE, log = log, include.lowest = include.lowest)
         }else{
           dfTP <- colourByValueMltp(dfTP,get = TRUE, cols = cols, log = log, include.lowest = include.lowest)
         }
       }else{
-        if(is.na(cols)){
+        # if(is.na(cols)){
+        if (missing(cols) || (length(cols) == 1 && is.na(cols))) {
           dfTP <- colourByValueMltp(dfTP,get = TRUE,breaks = breaks, log = log, include.lowest = include.lowest)
         }else{
           dfTP <- colourByValueMltp(dfTP,get = TRUE,breaks = breaks, cols = cols, log = log, include.lowest = include.lowest)
@@ -832,13 +836,15 @@ plotComparisonHelixMltpSingleLine <- function(helix1,helix2,top.name = "FALSE",s
       dfFP[,col := "#4169E1"]
     }else{
       if(is.na(breaks)){
-        if(is.na(cols)){
+        # if(is.na(cols)){
+        if (missing(cols) || (length(cols) == 1 && is.na(cols))) {
           dfFP <- colourByValueMltp(dfFP,get = TRUE, log = log, include.lowest = include.lowest)
         }else{
           dfFP <- colourByValueMltp(dfFP,get = TRUE, cols = cols, log = log, include.lowest = include.lowest)
         }
       }else{
-        if(is.na(cols)){
+        # if(is.na(cols)){
+        if (missing(cols) || (length(cols) == 1 && is.na(cols))) {
           dfFP <- colourByValueMltp(dfFP,get = TRUE,breaks = breaks, log = log, include.lowest = include.lowest)
         }else{
           dfFP <- colourByValueMltp(dfFP,get = TRUE,breaks = breaks, cols = cols, log = log, include.lowest = include.lowest)
@@ -922,6 +928,7 @@ plotComparisonHelixMltpSingleLine <- function(helix1,helix2,top.name = "FALSE",s
 
 
 #' @rdname plotCovarianceMltpSingleLine
+#' @name plotCovarianceComparisonMltpSingleLine
 #' @export
 #'
 ###############################################################################
@@ -1136,13 +1143,13 @@ plotCovarianceComparisonMltpSingleLine <- function(msa, helix1, helix2, comp.seq
   }
 
 
-  if(unique(dfTP$value) ==1 ){
+  if(length(unique(dfTP$value)) ==1 ){
     stop("True Positives have same value\n Colour to Blue")
     dfFP[,col := "#4169E1"]
   }else{
     dfFP <- colourByValueMltp(dfFP, get = TRUE, log = log,include.lowest = include.lowest)
   }
-  if(unique(dfFP$value) ==1 ){
+  if(length(unique(dfFP$value)) ==1 ){
     warning("False Positives have same value\n Colour to Blue")
     dfFP[,col := "#4169E1"]
   }else{
@@ -1303,6 +1310,7 @@ plotCovarianceComparisonMltpSingleLine <- function(msa, helix1, helix2, comp.seq
 
 
 #' @rdname plotCovarianceMltpSingleLine
+#' @name plotDoubleCovarianceComparisonMltpSingleLine
 #' @export
 #'
 ###############################################################################
@@ -1898,13 +1906,13 @@ plotDoubleCovarianceComparisonMltpSingleLine <- function(msa, helix1, helix2, co
                  pad = pad, debug = debug,scale=scale,...)
   }
 
-  if(unique(dfTP$value) ==1 ){
+  if(length(unique(dfTP$value)) ==1 ){
     stop("True Positives have same value\n Colour to Blue")
     dfFP[,col := "#4169E1"]
   }else{
     dfFP <- colourByValueMltp(dfFP, get = TRUE, log = log,include.lowest = include.lowest)
   }
-  if(unique(dfFP$value) ==1 ){
+  if(length(unique(dfFP$value)) ==1 ){
     warning("False Positives have same value\n Colour to Blue")
     dfTP[,col := "#4169E1"]
   }else{
@@ -1991,6 +1999,7 @@ plotDoubleCovarianceComparisonMltpSingleLine <- function(msa, helix1, helix2, co
 
 
 #' @rdname plotCovarianceMltpSingleLine
+#' @name plotCovarianceDoubleMltpSingleLine
 #' @export
 #'
 ###############################################################################

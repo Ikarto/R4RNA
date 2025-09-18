@@ -13,6 +13,4 @@ Description: A package for RNA basepair analysis, including the visualization of
                  covariation, with numerical methods for computing statistics for each.
 License: GPL-3
 URL: http://www.e-rna.org/r-chie/
-RoxygenNote: 7.1.1
-NeedsCompilation: no
-Packaged: 2021-10-24 06:42:50 UTC; DNA
+RoxygenNote: 7.3.2

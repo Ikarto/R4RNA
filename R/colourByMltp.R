@@ -19,6 +19,7 @@
 
 #' Assign colours to helices
 #'
+#' @name colourByValueMltp
 #' @description
 #' Functions to generate colours for helices by various rules,
 #' including integer counts, value ranges, percent identity covariation,
@@ -34,9 +35,9 @@
 #' @param counts An array of integers the same length as cols, dictating the number
 #' of times each corresponding colour should be used. When missing, the function will
 #' divide the number of helices evenly over each of the colours available.
-#' @param breaks An integer number of intervals to break the ‘value’ column of helix
+#' @param breaks An integer number of intervals to break the 'value' column of helix
 #' into, or a list of numbers defining the interval breaks. If missing, the range of
-#' ‘helix$value’ will automatically be split evenly into intervals for each colour available.
+#' 'helix$value' will automatically be split evenly into intervals for each colour available.
 #' @param get If TRUE, returns the input helix with a col column, else simply
 #' returns an array of colours the same length as the number of row in helix.
 #' The exceptions are colourByBasepairFrequency and colourByUnknottedGroupsMltp
@@ -51,7 +52,6 @@
 #' proper covariance colouring in future
 #'
 #' @export
-#'
 ###############################################################################
 #Assign color based on p-value
 ###############################################################################
@@ -156,6 +156,7 @@ unknottedGroupsMltp <- function(helix) {
 
 
 #' @rdname colourByValueMltp
+#' @name colourByUnknottedGroupsMltp
 #' @export
 #'
 ###############################################################################
@@ -198,6 +199,7 @@ colourByUnknottedGroupsMltp <- function(helix, cols, get = FALSE){
 }
 
 #' @rdname colourByValueMltp
+#' @name colourByConservationMltp
 #' @export
 #'
 ###############################################################################
@@ -339,6 +341,7 @@ colourByConservationMltp <- function(helix,msa,cols,get=FALSE,top.name = "FALSE"
 
 
 #' @rdname colourByValueMltp
+#' @name colourByCanonicalMltp
 #' @export
 #'
 ###############################################################################
@@ -480,8 +483,8 @@ colourByCanonicalMltp <- function(helix,msa,cols,get=FALSE,top.name = "FALSE",so
 
 
 #' @rdname colourByValueMltp
+#' @name colourByCountMltp
 #' @export
-#'
 ###############################################################################
 #colourByCountMltp
 ###############################################################################
@@ -526,6 +529,7 @@ colourByCountMltp <- function(helix,cols,counts, get = FALSE){
 
 
 #' @rdname colourByValueMltp
+#' @name colourByCovariationMltp
 #' @export
 #'
 ###############################################################################
@@ -697,6 +701,7 @@ basepairFrequencyMltp <- function(helix) {
 
 
 #' @rdname colourByValueMltp
+#' @name colourByBasepairFrequencyMltp
 #' @export
 #'
 ###############################################################################

@@ -608,7 +608,7 @@ max.height.double <- function(helix, msa,comp.seq = FALSE,y = 0, msa.all.seq = F
     helix.neg <- copy(update.helix.coord.double(helix.neg, uniq,  1, 1, mode = 1))
     helix.trans <- helix[ent.i != ent.j][ent.i == uniq[1, group] | ent.j == uniq[1, group]]
     helix.trans <- copy(update.helix.coord.double(helix.trans,  uniq, 1, uniq[, .N], mode = 3))
-    if (y != 0) {
+    if (length(y) != 0) {
       if (length(y) == 1) {
         y.update <- rep(y, nrow(uniq))
         uniq[, `:=`(y.arcs, y.update)]

@@ -63,9 +63,9 @@ colour helix with. When missing, a default set of colours from defaultPalette()
 will be used. Valid input include hex codes, colour names from the colours function,
 and integer numbers. The colours will be interpreted as being from best to worst.}
 
-\item{breaks}{An integer number of intervals to break the ‘value’ column of helix
+\item{breaks}{An integer number of intervals to break the 'value' column of helix
 into, or a list of numbers defining the interval breaks. If missing, the range of
-‘helix$value’ will automatically be split evenly into intervals for each colour available.}
+'helix$value' will automatically be split evenly into intervals for each colour available.}
 
 \item{get}{If TRUE, returns the input helix with a col column, else simply
 returns an array of colours the same length as the number of row in helix.

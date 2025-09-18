@@ -419,7 +419,7 @@ the first 7 colours will be used for colouring conserved basepairs,
 covarying basepairs, one-sided conserved basepairs, invalid basepairs,
 unpaired bases, gaps, and bases/pairs with ambiguous bases, resepctively.
 If the palette is shorter than the expected length, the palette will
-simply cycle. “NA” is a valid colour, that will effectively plot nothing.}
+simply cycle. "NA" is a valid colour, that will effectively plot nothing.}
 
 \item{text}{Only applicable when grid is TRUE.
 TRUE if the grid is to be filled with nucleotide character.}

@@ -17,10 +17,6 @@
 
 
 
-
-
-
-
 #' @rdname plotHelixMltpSingleLine
 #' @export
 #'
@@ -73,7 +69,7 @@ plotHelixMltpDoubleLine <- function(helix,top.name = "FALSE",  sort = FALSE,
   helix.trans <- helix[ent.i != ent.j][ent.i == uniq[1, group] | ent.j == uniq[1, group]]
   helix.trans <- copy(update.helix.coord.double(helix.trans, uniq, 1, uniq[, .N], mode = 3))
 
-  if (y != 0) {
+  if (length(y) != 0) {
     if (length(y) == 1) {
       y.update <- rep(y, nrow(uniq))
       uniq[, `:=`(y.arcs, y.update)]
@@ -909,18 +905,20 @@ plotComparisonHelixMltpDoubleLine <- function(helix1,helix2,scale = TRUE, top.na
   attr(dfFN, "length") <- attr(helix1, "length")
   attr(dfFN, "length") <- attr(helix1, "length")
 
-  if(unique(dfTP$value) ==1 ){
+  if(length(unique(dfTP$value)) ==1 ){
     warning("True Positives have same value\n Colour to Blue")
     dfTP[,col := "#4169E1"]
   }else{
     if(is.na(breaks)){
-      if(is.na(cols)){
+      # if(is.na(cols)){
+      if (missing(cols) || (length(cols) == 1 && is.na(cols))) {
         dfTP <- colourByValueMltp(dfTP,get = TRUE, log = log, include.lowest = include.lowest)
       }else{
         dfTP <- colourByValueMltp(dfTP,get = TRUE, cols = cols, log = log, include.lowest = include.lowest)
       }
     }else{
-      if(is.na(cols)){
+      # if(is.na(cols)){
+      if (missing(cols) || (length(cols) == 1 && is.na(cols))) {
         dfTP <- colourByValueMltp(dfTP,get = TRUE,breaks = breaks, log = log, include.lowest = include.lowest)
       }else{
         dfTP <- colourByValueMltp(dfTP,get = TRUE,breaks = breaks, cols = cols, log = log, include.lowest = include.lowest)
@@ -928,18 +926,20 @@ plotComparisonHelixMltpDoubleLine <- function(helix1,helix2,scale = TRUE, top.na
     }
 
   }
-  if(unique(dfFP$value) ==1 ){
+  if(length(unique(dfFP$value)) ==1 ){
     warning("False Positives have same value\n Colour to Blue")
     dfFP[,col := "#4169E1"]
   }else{
     if(is.na(breaks)){
-      if(is.na(cols)){
+      # if(is.na(cols)){
+      if (missing(cols) || (length(cols) == 1 && is.na(cols))) {
         dfFP <- colourByValueMltp(dfFP,get = TRUE, log = log, include.lowest = include.lowest)
       }else{
         dfFP <- colourByValueMltp(dfFP,get = TRUE, cols = cols, log = log, include.lowest = include.lowest)
       }
     }else{
-      if(is.na(cols)){
+      # if(is.na(cols)){
+      if (missing(cols) || (length(cols) == 1 && is.na(cols))) {
         dfFP <- colourByValueMltp(dfFP,get = TRUE,breaks = breaks, log = log, include.lowest = include.lowest)
       }else{
         dfFP <- colourByValueMltp(dfFP,get = TRUE,breaks = breaks, cols = cols, log = log, include.lowest = include.lowest)
@@ -1061,18 +1061,20 @@ plotCovarianceComparisonMltpDoubleLine <- function(helix1,helix2,msa,
   attr(dfFN, "length") <- attr(helix1, "length")
   attr(dfFN, "length") <- attr(helix1, "length")
 
-  if(unique(dfTP$value) ==1 ){
+  if(length(unique(dfTP$value)) ==1 ){
     warning("True Positives have same value\n Colour to Blue")
     dfTP[,col := "#4169E1"]
   }else{
     if(is.na(breaks)){
-      if(is.na(cols)){
+      # if(is.na(cols)){
+      if (missing(cols) || (length(cols) == 1 && is.na(cols))) {
         dfTP <- colourByValueMltp(dfTP,get = TRUE, log = log, include.lowest = include.lowest)
       }else{
         dfTP <- colourByValueMltp(dfTP,get = TRUE, cols = cols, log = log, include.lowest = include.lowest)
       }
     }else{
-      if(is.na(cols)){
+      # if(is.na(cols)){
+      if (missing(cols) || (length(cols) == 1 && is.na(cols))) {
         dfTP <- colourByValueMltp(dfTP,get = TRUE,breaks = breaks, log = log, include.lowest = include.lowest)
       }else{
         dfTP <- colourByValueMltp(dfTP,get = TRUE,breaks = breaks, cols = cols, log = log, include.lowest = include.lowest)
@@ -1080,18 +1082,20 @@ plotCovarianceComparisonMltpDoubleLine <- function(helix1,helix2,msa,
     }
 
   }
-  if(unique(dfFP$value) ==1 ){
+  if(length(unique(dfFP$value)) ==1 ){
     warning("False Positives have same value\n Colour to Blue")
     dfFP[,col := "#4169E1"]
   }else{
     if(is.na(breaks)){
-      if(is.na(cols)){
+      # if(is.na(cols)){
+      if (missing(cols) || (length(cols) == 1 && is.na(cols))) {
         dfFP <- colourByValueMltp(dfFP,get = TRUE, log = log, include.lowest = include.lowest)
       }else{
         dfFP <- colourByValueMltp(dfFP,get = TRUE, cols = cols, log = log, include.lowest = include.lowest)
       }
     }else{
-      if(is.na(cols)){
+      # if(is.na(cols)){
+      if (missing(cols) || (length(cols) == 1 && is.na(cols))) {
         dfFP <- colourByValueMltp(dfFP,get = TRUE,breaks = breaks, log = log, include.lowest = include.lowest)
       }else{
         dfFP <- colourByValueMltp(dfFP,get = TRUE,breaks = breaks, cols = cols, log = log, include.lowest = include.lowest)

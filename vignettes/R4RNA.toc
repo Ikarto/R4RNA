@@ -1,0 +1,17 @@
+\contentsline {section}{\numberline {1}R4RNA}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Reading Input}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Basic Arc Diagram}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Multiple Structures}{3}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Filtering Helices}{6}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Colouring Structures}{6}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Overlapping Multiple Structures}{8}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}Visualizing Multiple Sequence Alignments}{10}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.8}Overlapping Multiple Structures with Multiple Sequence Alignments}{12}{subsection.1.8}%
+\contentsline {subsection}{\numberline {1.9}Multiple Sequence Alignements with Annotated Arcs}{15}{subsection.1.9}%
+\contentsline {subsection}{\numberline {1.10}Additional Colouring Methods}{17}{subsection.1.10}%
+\contentsline {subsubsection}{\numberline {1.10.1}Colour By Covariation (with alignment as blocks)}{17}{subsubsection.1.10.1}%
+\contentsline {subsubsection}{\numberline {1.10.2}Colour By Conservation (with custom alignment colours)}{18}{subsubsection.1.10.2}%
+\contentsline {subsubsection}{\numberline {1.10.3}Colour By Percentage Canonical Basepairs (with custom arc colours)}{19}{subsubsection.1.10.3}%
+\contentsline {subsubsection}{\numberline {1.10.4}Colour Pseudoknots (with CLUSTALX-style alignment)}{20}{subsubsection.1.10.4}%
+\contentsline {subsection}{\numberline {1.11}Working with HiC data}{21}{subsection.1.11}%
+\contentsline {section}{\numberline {2}Session Information}{22}{section.2}%
